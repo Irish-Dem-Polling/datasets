@@ -1,7 +1,2 @@
-# Files for creating the report/codebook
-*irish-demographic-polling-datasets.Rmd
-
-# R scripts
-*.R
-
 *.DS_Store
+*.Rmd
