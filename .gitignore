@@ -3,3 +3,5 @@
 
 # R scripts
 *.R
+
+*.DS_Store
