@@ -1,4 +1,4 @@
-date,date_start,date_end,date_middle,sample_size,party,total,male,female,age_18_34,age_35_54,age_55,class_abc1,class_c2de,class_f,Dublin,region_leinster,region_munster,region_connacht_ulster,area_urban,area_rural,const_seats_5
+date,date_start,date_end,date_middle,sample_size,party,total,male,female,age_18_34,age_35_54,age_55,class_abc1,class_c2de,class_f,region_dublin,region_leinster,region_munster,region_connacht_ulster,area_urban,area_rural,const_seats_5
 2015-08-15,2015-08-02,2015-08-12,2015-08-07,898,Fianna Fáil,390,178,211,116,102,171,126,234,30,48,94,153,96,186,204,129
 2015-08-15,2015-08-02,2015-08-12,2015-08-07,898,Fine Gael,532,254,278,102,193,237,245,182,105,118,140,165,109,292,240,183
 2015-08-15,2015-08-02,2015-08-12,2015-08-07,898,Labour,108,49,59,20,52,35,58,50,0,55,31,18,4,80,28,63
