@@ -22,6 +22,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      # Boilerplate
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-r@v2
@@ -33,17 +34,32 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 
+      # Use Stefan's script to parse Google Sheet data
+
       - name: Generate data
         run: |
           source("scripts/load_data.R")
         shell: Rscript {0}
 
-      #TODO: Find a way to automatically generate reports
-
-      - name: Commit files
+      - name: Commit data
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add --all
-          git commit -am "add data"
+          git commit -am "new data"
           git push 
+
+      # Report is generated using data freshly pushed to the repository
+
+      - name: Generate report
+        run: Rscript -e 'rmarkdown::render("scripts/idpd_report.Rmd", output_format = "pdf_document", output_file = "irish-demographic-polling-datasets.pdf")'
+
+      # Second push to commit new report
+
+      - name: Commit results
+        run: |
+            git config --local user.email "actions@github.com"
+            git config --local user.name "GitHub Actions"
+            git add --all
+            git commit -am "new report"
+            git push 
