@@ -78,10 +78,10 @@ theme_set(theme_baser())
 # quietly load datasets
 
 # From the interwebs
-dat_firstpref_redc <- read.csv("https://github.com/Irish-Dem-Polling/datasets/blob/main/vote-intention/data_redc_firstpref_prop.csv")
-dat_firstpref_banda <- read.csv("https://github.com/Irish-Dem-Polling/datasets/blob/main/vote-intention/data_banda_firstpref_prop.csv")
-dat_govsat <- read.csv("https://github.com/Irish-Dem-Polling/datasets/blob/main/government-satisfaction/data_banda_govsat_prop.csv")
-dat_leaders <- read.csv("https://github.com/Irish-Dem-Polling/datasets/blob/main/party-leaders/data_banda_leaders_prop.csv")
+dat_firstpref_redc <- read.csv("https://raw.githubusercontent.com/Irish-Dem-Polling/datasets/main/vote-intention/data_redc_firstpref_prop.csv")
+dat_firstpref_banda <- read.csv("https://raw.githubusercontent.com/Irish-Dem-Polling/datasets/main/vote-intention/data_banda_firstpref_prop.csv")
+dat_govsat <- read.csv("https://raw.githubusercontent.com/Irish-Dem-Polling/datasets/main/government-satisfaction/data_banda_govsat_prop.csv")
+dat_leaders <- read.csv("https://raw.githubusercontent.com/Irish-Dem-Polling/datasets/main/party-leaders/data_banda_leaders_prop.csv")
 
 dat_firstpref_redc_dates <- dat_firstpref_redc %>% 
     group_by(date) %>% 
