@@ -57,7 +57,7 @@ jobs:
           sudo apt-get install texlive-latex-extra
 
       - name: Generate report
-        run: Rscript -e 'rmarkdown::render("scripts/idpd_report.Rmd", output_format = "pdf_document", output_file = "irish-demographic-polling-datasets.pdf")'
+        run: Rscript -e 'rmarkdown::render("scripts/idpd_report.Rmd", output_format = "pdf_document", output_file = "../irish-demographic-polling-datasets.pdf")'
 
       # Second push to commit new report
 
