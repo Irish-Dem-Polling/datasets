@@ -51,6 +51,9 @@ jobs:
 
       # Report is generated using data freshly pushed to the repository
 
+      - name: Install TeX
+        run: sudo apt-get install texlive-latex-base
+
       - name: Generate report
         run: Rscript -e 'rmarkdown::render("scripts/idpd_report.Rmd", output_format = "pdf_document", output_file = "irish-demographic-polling-datasets.pdf")'
 
