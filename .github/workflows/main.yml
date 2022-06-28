@@ -46,7 +46,7 @@ jobs:
           git config --local user.email "tompluck@mail.com"
           git config --local user.name "ThomasPluck"
           git add --all
-          git commit -am "new data"
+          git commit -am "Update data"
           git push 
 
       # Report is generated using data freshly pushed to the repository
@@ -66,5 +66,5 @@ jobs:
             git config --local user.email "tompluck@mail.com"
             git config --local user.name "ThomasPluck"
             git add --all
-            git commit -am "new report"
+            git commit -am "Update report"
             git push 
