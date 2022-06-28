@@ -2,7 +2,7 @@ name: update-data
 on: 
   push:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 3"
 
 jobs:
   update-data:
@@ -43,8 +43,8 @@ jobs:
 
       - name: Commit data
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git config --local user.email "tompluck@mail.com"
+          git config --local user.name "ThomasPluck"
           git add --all
           git commit -am "new data"
           git push 
@@ -63,8 +63,8 @@ jobs:
 
       - name: Commit results
         run: |
-            git config --local user.email "actions@github.com"
-            git config --local user.name "GitHub Actions"
+            git config --local user.email "tompluck@mail.com"
+            git config --local user.name "ThomasPluck"
             git add --all
             git commit -am "new report"
             git push 
