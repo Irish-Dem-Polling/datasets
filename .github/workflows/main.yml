@@ -1,8 +1,7 @@
 name: update-data
 on: 
-  push:
   schedule:
-    - cron: "0 19 * * *"
+    - cron: "0 * * * *"
 
 jobs:
   update-data:
