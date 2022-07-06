@@ -150,6 +150,12 @@ dat_banda_indepen <- dat_banda_indepen %>%
                                  "Sinn Fein" = "Sinn Féin",
                                  "Fianna Fail" = "Fianna Fáil",
                                  "Aontu" = "Aontú", 
+                                 "Labour Party" = "Labour",
+                                 "Solidarity/People Before Profit" = "Solidarity/PBP",
+                                 "Labour Party" = "Labour",
+                                 "Other Independent candidate" = "Independents",
+                                 "Other Independent candidate" = "Independents",
+                                  "RENUA Ireland" = "RENUA",
                                  "PBP"= "Solidarity/PBP"))
 
 
@@ -166,7 +172,8 @@ dat_banda_indepen <- dat_banda_indepen %>%
 
 
 
-dat_banda_indepen_clean <- dat_banda_indepen %>% 
+dat_banda_indepen_clean <- dat_banda_indepen %>%
+    filter(!is.na(Total)) %>% 
     rename(date = Date) %>% 
     group_by(date) %>% 
     mutate(total = Total / sum(Total),
@@ -191,7 +198,8 @@ dat_banda_indepen_clean <- dat_banda_indepen %>%
 
 
 
-dat_ipi_banda <- filter(dat_ipi_subset, pollster == "Behaviour & Attitudes")
+dat_ipi_banda <- filter(dat_ipi_subset, 
+                        pollster == "Behaviour & Attitudes")
 
 dat_ipi_banda$date_middle <- as.Date(dat_ipi_banda$date_middle)
 
@@ -227,7 +235,7 @@ dat_props_banda_indepen_joined <- dat_props_banda_indepen_joined %>%
 
 dat_counts_banda_indepen_joined <- dat_banda_indepen_clean_joined %>% 
     select(-c(total:const_seats_5)) %>% 
-    rename(total = Total,
+    rename(total =  Total,
            male = Male,
            female = Female,
            age_18_34 = `-34`,
