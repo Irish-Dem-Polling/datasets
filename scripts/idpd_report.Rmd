@@ -163,6 +163,7 @@ dat_vars_banda_firstpref <- dat_vars_banda_firstpref %>%
         Variable == "class_abc1" ~ "Social class: ABC1",
         Variable == "class_c2de" ~ "Social class: C2DE",
         Variable == "class_f" ~ "Social class: F",
+        Variable == "region_dublin" ~ "Region: Dublin",
         Variable == "region_leinster" ~ "Region: Rest of Leinster",
         Variable == "region_munster" ~ "Region: Munster",
         Variable == "region_connacht_ulster" ~ "Region: Connacht/Ulster",
@@ -492,9 +493,9 @@ ggplot(dat_govsat_long, aes(x = as.Date(date),
 ## Satisfaction with Party Leaders
 
 
-Third, we assess how approval with party leaders varies among census-based measures of social class. The B&A reports distinguish between _ABC1_ ("middle class"), C2DE ("working class") and F (farmers). All B&A datasets include estimates for these three groups. Below, we assess how support for the leader of Sinn Féin varies across the three groups. Moreover, we compare differences in approval between Mary Lou McDonald and Gerry Adams.
+Third, we assess how approval with party leaders varies among census-based measures of social class. The B&A reports distinguish between _ABC1_ ("middle class"), _C2DE_ ("working class") and _F_ ("semi-skilled"). All B&A datasets include estimates for these three groups. Below, we assess how support for the leader of Sinn Féin varies across the three groups. Moreover, we compare differences in approval between Mary Lou McDonald and Gerry Adams.
 
-First, Mary Lou McDonald is more popular than Gerry Adams when he left the party. Second, voters classified into C2DE (working class) tend approve  McDonald more than farmers and middle-class voters. This difference tends to be relatively small, though. Third, even though support for Sinn Féin increased substantively since the election in 2020, support McDonald remained constant. Fourth, we observe considerable variation among farmers, which again points to the disadvantage of samples with around 1000 respondents: sub-group analyses for small groups involve a lot of uncertainty and should be treated with great caution.
+First, Mary Lou McDonald is more popular than Gerry Adams when he left the party. Second, voters classified into _C2DE_ (working class) tend approve  McDonald more than semi-skilled and middle-class voters. This difference tends to be relatively small, though. Third, even though support for Sinn Féin increased substantively since the election in 2020, support McDonald remained constant. Fourth, we observe considerable variation among semi-skilled workers, which again points to the disadvantage of samples with around 1000 respondents: sub-group analyses for small groups involve a lot of uncertainty and should be treated with great caution.
 
                                  
 ```{r sf_leaders, fig.height=5, fig.topcaption=TRUE, warning = FALSE,echo=FALSE, message=FALSE}
@@ -512,7 +513,7 @@ dat_leaders_long <- dat_leaders %>%
                              "Mary Lou McDonald", "Gerry Adams")) %>% 
     mutate(class = dplyr::recode(class, "abc1" = "Middle Class\n(ABC1)",
                                  "c2de" = "Working Class\n(C2DE)",
-                                 "f" = "Farmers\n(F)",
+                                 "f" = "Semi-Skilled\n(F)",
                                  "total" = "All Respondents"))
 
 dat_leaders_long$class <- factor(dat_leaders_long$class,
@@ -520,7 +521,7 @@ dat_leaders_long$class <- factor(dat_leaders_long$class,
                                      "All Respondents",
                                      "Working Class\n(C2DE)",
                                      "Middle Class\n(ABC1)",
-                                     "Farmers\n(F)"
+                                     "Semi-Skilled\n(F)"
                                  ))
 
 ggplot(dat_leaders_long, aes(x = as.Date(date),
