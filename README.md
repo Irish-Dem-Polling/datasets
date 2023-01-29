@@ -26,9 +26,10 @@ We provide all datasets in three file formats.
 
 ## Citation
 
-If you use these datasets for news reports or academic research, please consider citing:
+If you use these datasets for news reports or academic research, please 
+citing:
 
-Thomas Pluck and Stefan Müller (2022). _Irish Demographic Polling Datasets_. URL: https://github.com/Irish-Dem-Polling/datasets
+Stefan Müller, Thomas Pluck, and Paula Montano (2023). _Irish Demographic Polling Datasets_. URL: https://github.com/Irish-Dem-Polling/datasets
 
 ## Acknowledgements
 
