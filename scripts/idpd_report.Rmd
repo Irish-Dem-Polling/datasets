@@ -1,6 +1,6 @@
 ---
 title: "Irish Demographic Polling Datasets"
-author: "\\Large Thomas Pluck and Stefan Müller"
+author: "\\Large Stefan Müller, Thomas Pluck, and Paula Montano"
 date: "`r format(Sys.time(), '%d %B %Y')` (access most recent version [here](https://github.com/Irish-Dem-Polling/datasets))"
 abstract: "\\noindent The Irish Demographic Polling Dataset collects results on Irish voters' vote intentions, satisfaction with the government, and approval of party leaders. All data are available for the full set of respondents, and various sub-samples, such as age groups, gender, region, and social class. Currently, the datasets consider up to 70 polls, published between 2011 and 2022. After summarising the  variables and structure of the data, we briefly discuss advantages and limitations of sub-group analyses by addressing three typical questions relating to Irish party politics. We hope the Irish Demographic Polling Datasets will help researchers and practioners analyse continuity and changes in Irish voters' party preferences and political opinions."
 output: 
@@ -30,7 +30,7 @@ The Irish Demographic Polling Datasets contain results from survey reports provi
 
 If you use these datasets for news reports or academic research, please consider citing:
 
-> Thomas Pluck and Stefan Müller (2022). _Irish Demographic Polling Datasets_. URL: https://github.com/Irish-Dem-Polling/datasets
+> Stefan Müller, Thomas Pluck, and Paula Montano (2023). _Irish Demographic Polling Datasets_. URL: https://github.com/Irish-Dem-Polling/datasets
 
 We want to thank RedC Research and Behaviour & Attitudes for continuously publishing survey reports for the public. If you use individual surveys, please cite and reference the pollsters' reports rather than this dataset.^[Reports provided by Behaviour & Attitudes are available [here](https://banda.ie/site-reports/). The reports released by RedC can be accessed [here](https://www.redcresearch.ie/latest-polls/live-polling-tracker/).]
 
