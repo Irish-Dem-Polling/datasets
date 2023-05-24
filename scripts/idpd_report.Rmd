@@ -2,7 +2,7 @@
 title: "Irish Demographic Polling Datasets"
 author: "\\Large Stefan Müller, Thomas Pluck, and Paula Montano"
 date: "`r format(Sys.time(), '%d %B %Y')` (access most recent version [here](https://github.com/Irish-Dem-Polling/datasets))"
-abstract: "\\noindent The Irish Demographic Polling Dataset collects results on Irish voters' vote intentions, satisfaction with the government, and approval of party leaders. All data are available for the full set of respondents, and various sub-samples, such as age groups, gender, region, and social class. Currently, the datasets consider up to 70 polls, published between 2011 and 2022. After summarising the  variables and structure of the data, we briefly discuss advantages and limitations of sub-group analyses by addressing three typical questions relating to Irish party politics. We hope the Irish Demographic Polling Datasets will help researchers and practioners analyse continuity and changes in Irish voters' party preferences and political opinions."
+abstract: "\\noindent The Irish Demographic Polling Dataset collects results on Irish voters' vote intentions, satisfaction with the government, and approval of party leaders. All data are available for the full set of respondents, and various sub-samples, such as age groups, gender, region, and social class. Currently, the datasets consider up to 70 polls, published between 2011 and 2023. After summarising the  variables and structure of the data, we briefly discuss advantages and limitations of sub-group analyses by addressing three typical questions relating to Irish party politics. The datasets can also be accessed, subsetted, and visualised through an [interactive dashboard](https://irishdempolling.shinyapps.io/dashboard/). We hope the Irish Demographic Polling Datasets will help researchers and practioners analyse continuity and changes in Irish voters' party preferences and political opinions."
 output: 
     pdf_document:
         number_sections: true
@@ -35,6 +35,10 @@ If you use these datasets for news reports or academic research, please consider
 We want to thank RedC Research and Behaviour & Attitudes for continuously publishing survey reports for the public. If you use individual surveys, please cite and reference the pollsters' reports rather than this dataset.^[Reports provided by Behaviour & Attitudes are available [here](https://banda.ie/site-reports/). The reports released by RedC can be accessed [here](https://www.redcresearch.ie/latest-polls/live-polling-tracker/).]
 
 The figure below summarises the available polls in our dataset. Each horizontal bar indicates one survey.
+
+Users can either download the raw data from our [GitHub repository](https://github.com/Irish-Dem-Polling/datasets), or subset, download, and visualise the data on the [Irish Demographic Polling Dashboard](https://irishdempolling.shinyapps.io/dashboard/). 
+
+
 
 ```{r,include = FALSE}
 library(tidyverse)
