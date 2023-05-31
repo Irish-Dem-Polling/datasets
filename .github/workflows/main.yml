@@ -43,8 +43,7 @@ jobs:
 
       - name: Commit data
         run: |
-          git config --local user.email "tompluck@mail.com"
-          git config --local user.name "ThomasPluck"
+          git config --local user.name "Github Actions"
           git add --all
           git commit -am "Update data"
           git push 
@@ -63,8 +62,7 @@ jobs:
 
       - name: Commit results
         run: |
-            git config --local user.email "tompluck@mail.com"
-            git config --local user.name "ThomasPluck"
+            git config --local user.name "Github Actions"
             git add --all
             git commit -am "Update report"
             git push 
