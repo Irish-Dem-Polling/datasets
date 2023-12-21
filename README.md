@@ -2,6 +2,8 @@
 
 [**Detailed Report and Codebook (PDF)**](irish-demographic-polling-datasets.pdf)
 
+[**Interactive Dashboard**](https://irishdempolling.shinyapps.io/dashboard/)
+
 ## Introduction
 
 The Irish Demographic Polling Datasets collect aggregated results on vote intentions, satisfaction with the government, and popularity of party leaders. The data are available for all respondents and various subsamples, such as age groups, gender, social class, geographic region, and district magnitude. Currently, the datasets consider over 100 polls, published between 2011 and 2023.
