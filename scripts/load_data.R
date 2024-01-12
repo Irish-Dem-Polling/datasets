@@ -95,6 +95,10 @@ names(dat_redc_first_pref)
 dat_redc_first_pref[] <- lapply(dat_redc_first_pref, gsub, pattern="\\%", replacement="")
 
 
+dat_redc_first_pref <- dat_redc_first_pref %>%
+    mutate(Date = dplyr::recode(Date,
+                                "1694217600" = "9/9/2023"))
+
 dat_redc_clean <- dat_redc_first_pref %>% 
     mutate(date = as.Date(Date, "%m/%d/%Y")) %>% 
     mutate(total = as.numeric(Total),
@@ -117,7 +121,10 @@ dat_ipi_redc <- filter(dat_ipi_subset, pollster == "Red C")
 
 dat_ipi_redc$date_middle <- as.Date(dat_ipi_redc$date_middle)
 
+
+
 dat_redc_clean <- rename(dat_redc_clean, date_middle = date)
+
 
 dat_redc_clean_joined <- left_join(dat_redc_clean, dat_ipi_redc)
 
