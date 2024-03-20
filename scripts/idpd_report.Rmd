@@ -126,6 +126,7 @@ year_max_banda <- substr(max(dat_firstpref_banda$date), 1, 4)
 ggplot(dat_dates_all, aes(x = as.Date(date),
                           y = data)) +
     geom_point(shape = "|", size = 3) +
+    scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
     labs(x = "Date of survey", y = NULL)
 ```
 
