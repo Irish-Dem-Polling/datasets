@@ -36,7 +36,7 @@ We want to thank RedC Research and Behaviour & Attitudes for continuously publis
 
 The figure below summarises the available polls in our dataset. Each horizontal bar indicates one survey.
 
-Users can either download the raw data from our [GitHub repository](https://github.com/Irish-Dem-Polling/datasets), or subset, download, and visualise the data on the [Irish Demographic Polling Dashboard](https://irishdempolling.shinyapps.io/dashboard/). 
+Users can either download the raw data from our [GitHub repository](https://github.com/Irish-Dem-Polling/datasets), or subset, download, and visualise the data on the [Irish Demographic Polling Dashboard](https://irishpoliticsdata.shinyapps.io/demographicpolling). 
 
 
 

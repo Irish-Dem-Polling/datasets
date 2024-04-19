@@ -2,7 +2,7 @@
 
 [**Detailed Report and Codebook (PDF)**](irish-demographic-polling-datasets.pdf)
 
-[**Interactive Dashboard**](https://irishdempolling.shinyapps.io/dashboard/)
+[**Interactive Dashboard**](https://irishpoliticsdata.shinyapps.io/demographicpolling/)
 
 ## Introduction
 
