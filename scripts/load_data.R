@@ -68,7 +68,8 @@ dat_redc_first_pref <- dat_redc_first_pref %>%
                                 "1625788800"  = "9/7/2021",
                                 "1565308800"= "9/8/2019",
                                 "1575504000" = "5/12/2019",
-                                "1646784000" = "9/3/2022"
+                                "1646784000" = "9/3/2022",
+                                "1720483200" = "09/07/2024"
     ))
 
 
@@ -630,3 +631,4 @@ haven::write_dta(dat_prop_banda_govsat, "government-satisfaction/data_banda_govs
 haven::write_dta(dat_counts_banda_govsat, "government-satisfaction/data_banda_govsat_counts.dta")
 saveRDS(dat_prop_banda_govsat, "government-satisfaction/data_banda_govsat_prop.rds")
 saveRDS(dat_counts_banda_govsat, "government-satisfaction/data_banda_govsat_counts.rds")
+
