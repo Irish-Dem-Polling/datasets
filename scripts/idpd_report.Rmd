@@ -3,7 +3,7 @@ title: "Irish Demographic Polling Datasets"
 author: "\\Large Stefan Müller, Thomas Pluck, and Paula Montano"
 date: "`r format(Sys.time(), '%d %B %Y')` (access most recent version [here](https://github.com/Irish-Dem-Polling/datasets))"
 abstract: "\\noindent The Irish Demographic Polling Dataset collects results on Irish voters' vote intentions, satisfaction with the government, and approval of party leaders. All data are available for the full set of respondents, and various sub-samples, such as age groups, gender, region, and social class. Currently, the datasets consider over 100 polls, published between 2011 and 2024. After summarising the  variables and structure of the data, we briefly discuss advantages and limitations of sub-group analyses by addressing three typical questions relating to Irish party politics. The datasets can also be accessed, subsetted, and visualised through an [interactive dashboard](https://irishdempolling.shinyapps.io/dashboard/). We hope the Irish Demographic Polling Datasets will help researchers and practioners analyse continuity and changes in Irish voters' party preferences and political opinions."
-output: 
+output:
     pdf_document:
         number_sections: true
 classoption: 12pt
@@ -19,8 +19,10 @@ header-includes:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      fig.topcaption=TRUE)
+knitr::opts_chunk$set(
+    echo = TRUE,
+    fig.topcaption = TRUE
+)
 ```
 
 
@@ -36,7 +38,7 @@ We want to thank RedC Research and Behaviour & Attitudes for continuously publis
 
 The figure below summarises the available polls in our dataset. Each horizontal bar indicates one survey.
 
-Users can either download the raw data from our [GitHub repository](https://github.com/Irish-Dem-Polling/datasets), or subset, download, and visualise the data on the [Irish Demographic Polling Dashboard](https://irishpoliticsdata.shinyapps.io/demographicpolling). 
+Users can either download the raw data from our [GitHub repository](https://github.com/Irish-Dem-Polling/datasets), or subset, download, and visualise the data on the [Irish Demographic Polling Dashboard](https://irishpoliticsdata.shinyapps.io/demographicpolling).
 
 
 
@@ -49,31 +51,39 @@ library(xtable)
 
 options(xtable.comment = FALSE)
 
-theme_baser <- function (){
-    theme_minimal()  %+replace%
-        theme(panel.grid.minor.x = element_blank(),
-              panel.grid.minor.y = element_blank(),
-              panel.grid.major.x = element_blank(),
-              panel.grid.major.y = element_blank(),
-              panel.border = element_rect(fill = NA,colour = "black", size = 0.5,
-                                          linetype = "solid"),
-              legend.title = element_text(size = 13),
-              plot.caption = element_text(colour = "grey30", size = 11, hjust = 1),
-              plot.title = element_text(size = 13, face = "bold",
-                                        vjust = 1.5, hjust = 0.5,
-                                        margin=margin(0, 0, 12 ,0)),
-              legend.position = "bottom",
-              axis.ticks.y = element_line(size = 0.3),
-              axis.ticks.x = element_line(size = 0.3),
-              axis.ticks.length = unit(0.2, "cm"),
-              legend.text=element_text(size = 11),
-              panel.background = element_rect(fill='white'), #transparent panel bg
-              plot.background = element_rect(fill='white', color= "white"), #transparent plot bg
-              strip.text = element_text(size = 12, hjust = 0.5,
-                                        margin = margin(b = 5, r = 5, l = 5, t = 5)),
-              axis.text.y = element_text(colour = "black", size = 11, hjust = 1),
-              axis.text.x = element_text(colour = "black", size = 11),
-              axis.title = element_text(size = 11, hjust = 0.5))
+theme_baser <- function() {
+    theme_minimal() %+replace%
+        theme(
+            panel.grid.minor.x = element_blank(),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_blank(),
+            panel.grid.major.y = element_blank(),
+            panel.border = element_rect(
+                fill = NA, colour = "black", linewidth = 0.5,
+                linetype = "solid"
+            ),
+            legend.title = element_text(size = 13),
+            plot.caption = element_text(colour = "grey30", size = 11, hjust = 1),
+            plot.title = element_text(
+                size = 13, face = "bold",
+                vjust = 1.5, hjust = 0.5,
+                margin = margin(0, 0, 12, 0)
+            ),
+            legend.position = "bottom",
+            axis.ticks.y = element_line(size = 0.3),
+            axis.ticks.x = element_line(size = 0.3),
+            axis.ticks.length = unit(0.2, "cm"),
+            legend.text = element_text(size = 11),
+            panel.background = element_rect(fill = "white"), # transparent panel bg
+            plot.background = element_rect(fill = "white", color = "white"), # transparent plot bg
+            strip.text = element_text(
+                size = 12, hjust = 0.5,
+                margin = margin(b = 5, r = 5, l = 5, t = 5)
+            ),
+            axis.text.y = element_text(colour = "black", size = 11, hjust = 1),
+            axis.text.x = element_text(colour = "black", size = 11),
+            axis.title = element_text(size = 11, hjust = 0.5)
+        )
 }
 
 # set theme
@@ -87,31 +97,33 @@ dat_firstpref_banda <- read.csv("https://raw.githubusercontent.com/Irish-Dem-Pol
 dat_govsat <- read.csv("https://raw.githubusercontent.com/Irish-Dem-Polling/datasets/main/government-satisfaction/data_banda_govsat_prop.csv")
 dat_leaders <- read.csv("https://raw.githubusercontent.com/Irish-Dem-Polling/datasets/main/party-leaders/data_banda_leaders_prop.csv")
 
-dat_firstpref_redc_dates <- dat_firstpref_redc %>% 
-    group_by(date) %>% 
-    count() %>% 
+dat_firstpref_redc_dates <- dat_firstpref_redc %>%
+    group_by(date) %>%
+    count() %>%
     mutate(data = "Vote intention (Red C)")
 
-dat_firstpref_banda_dates <- dat_firstpref_banda %>% 
-    group_by(date) %>% 
-    count() %>% 
+dat_firstpref_banda_dates <- dat_firstpref_banda %>%
+    group_by(date) %>%
+    count() %>%
     mutate(data = "Vote intention (B&A)")
 
-dat_govsat_dates <- dat_govsat %>% 
-    group_by(date) %>% 
-    count() %>% 
+dat_govsat_dates <- dat_govsat %>%
+    group_by(date) %>%
+    count() %>%
     mutate(data = "Satisfaction with government (B&A)")
 
-dat_leaders_dates <- dat_leaders %>% 
-    group_by(date) %>% 
-    count() %>% 
+dat_leaders_dates <- dat_leaders %>%
+    group_by(date) %>%
+    count() %>%
     mutate(data = "Satisfaction with party leaders (B&A)")
 
 
-dat_dates_all <- bind_rows(dat_leaders_dates,
-                           dat_firstpref_banda_dates,
-                           dat_firstpref_redc_dates,
-                           dat_govsat_dates)
+dat_dates_all <- bind_rows(
+    dat_leaders_dates,
+    dat_firstpref_banda_dates,
+    dat_firstpref_redc_dates,
+    dat_govsat_dates
+)
 
 year_min_redc <- substr(min(dat_firstpref_redc$date), 1, 4)
 year_min_banda <- substr(min(dat_firstpref_banda$date), 1, 4)
@@ -123,8 +135,10 @@ year_max_banda <- substr(max(dat_firstpref_banda$date), 1, 4)
 
 
 ```{r, fig.height = 2,  echo=FALSE, warning=FALSE}
-ggplot(dat_dates_all, aes(x = as.Date(date),
-                          y = data)) +
+ggplot(dat_dates_all, aes(
+    x = as.Date(date),
+    y = data
+)) +
     geom_point(shape = "|", size = 3) +
     scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
     labs(x = "Date of survey", y = NULL)
@@ -137,21 +151,21 @@ ggplot(dat_dates_all, aes(x = as.Date(date),
 ## First-Preference Vote Choice
 
 
-We gathered information on first-preference vote choice provided in survey reports by Behaviour & Attitudes and RedC. 
+We gathered information on first-preference vote choice provided in survey reports by Behaviour & Attitudes and RedC.
 
 The tables below summarise the number of polls and time spans.
 
 **Behaviour and Attitudes**
 
 The dataset `data_banda_firstpref_prop` contains first-preference vote choice for various subsamples and the full set of respondents released in  `r length(unique(dat_firstpref_banda$date))`  surveys. Results are reported as proportions. The dataset `data_banda_firstpref_count` contains the _weighted_ counts provided in the survey reports.
-The first available poll was released on `r format(as.Date(min(dat_firstpref_banda$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_firstpref_banda$date)), "%d %B %Y")`.  Table  \ref{tab:banda_firstpref_vars} describes the variables included in the dataset. 
+The first available poll was released on `r format(as.Date(min(dat_firstpref_banda$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_firstpref_banda$date)), "%d %B %Y")`.  Table  \ref{tab:banda_firstpref_vars} describes the variables included in the dataset.
 
 ```{r, message=FALSE, results='asis',warning=FALSE,echo=FALSE}
 dat_vars_banda_firstpref <- data.frame(
-    Variable = colnames(dat_firstpref_banda) 
+    Variable = colnames(dat_firstpref_banda)
 )
 
-dat_vars_banda_firstpref <- dat_vars_banda_firstpref %>% 
+dat_vars_banda_firstpref <- dat_vars_banda_firstpref %>%
     mutate(Details = dplyr::case_when(
         Variable == "date" ~ "Release of poll",
         Variable == "date_start" ~ "Survey fielding: start",
@@ -175,32 +189,32 @@ dat_vars_banda_firstpref <- dat_vars_banda_firstpref %>%
         Variable == "area_urban" ~ "Urban region",
         Variable == "area_rural" ~ "Rural region",
         Variable == "const_seats_3" ~ "3-seat constituency",
-        Variable == "const_seats_4" ~  "4-seat constituency",
+        Variable == "const_seats_4" ~ "4-seat constituency",
         Variable == "const_seats_5" ~ "5-seat constituency"
-        
-        
-        
     ))
 
-print(xtable(dat_vars_banda_firstpref, 
-             label = "tab:banda_firstpref_vars",
-             caption = "Variable description: First-preference vote choice (Behaviour and Attitudes)"),
-      caption.placement = "top", 
-      size = "scriptsize",
-      include.rownames = FALSE)
+print(
+    xtable(dat_vars_banda_firstpref,
+        label = "tab:banda_firstpref_vars",
+        caption = "Variable description: First-preference vote choice (Behaviour and Attitudes)"
+    ),
+    caption.placement = "top",
+    size = "scriptsize",
+    include.rownames = FALSE
+)
 ```
 
 
 **RedC**
 
-The dataset `data_redc_firstpref_prop` contains first-preference vote choice from  `r length(unique(dat_firstpref_redc$date))` surveys for various subsamples and the full set of respondents. Results are reported as proportions. The first available poll was released on `r format(as.Date(min(dat_firstpref_redc$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_firstpref_redc$date)), "%d %B %Y")`. The dataset currently considers  `r length(unique(dat_firstpref_redc$date))`  surveys. Table  \ref{tab:redc_vars} describes the variables included in the dataset. 
+The dataset `data_redc_firstpref_prop` contains first-preference vote choice from  `r length(unique(dat_firstpref_redc$date))` surveys for various subsamples and the full set of respondents. Results are reported as proportions. The first available poll was released on `r format(as.Date(min(dat_firstpref_redc$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_firstpref_redc$date)), "%d %B %Y")`. The dataset currently considers  `r length(unique(dat_firstpref_redc$date))`  surveys. Table  \ref{tab:redc_vars} describes the variables included in the dataset.
 
 ```{r, message=FALSE, results='asis',warning=FALSE,echo=FALSE}
 dat_vars_redc <- data.frame(
-    Variable = colnames(dat_firstpref_redc) 
+    Variable = colnames(dat_firstpref_redc)
 )
 
-dat_vars_redc <- dat_vars_redc %>% 
+dat_vars_redc <- dat_vars_redc %>%
     mutate(Details = dplyr::case_when(
         Variable == "date" ~ "Release of poll",
         Variable == "date_start" ~ "Survey fielding: start",
@@ -220,22 +234,24 @@ dat_vars_redc <- dat_vars_redc %>%
         Variable == "region_leinster_rest" ~ "Region: Rest of Leinster",
         Variable == "region_munster" ~ "Region: Munster",
         Variable == "region_connacht_ulster" ~ "Region: Connacht/Ulster"
-        
     ))
 
-print(xtable(dat_vars_redc, 
-             label = "tab:redc_vars",
-             caption = "Variable description: First-preference vote choice (RedC)"),
-      caption.placement = "top", 
-      size = "scriptsize",
-      include.rownames = FALSE)
+print(
+    xtable(dat_vars_redc,
+        label = "tab:redc_vars",
+        caption = "Variable description: First-preference vote choice (RedC)"
+    ),
+    caption.placement = "top",
+    size = "scriptsize",
+    include.rownames = FALSE
+)
 ```
 
 ## Satisfaction with the Government
 
 
 The dataset `data_banda_govsat_prop` contains information on the satisfaction with the government for various subsamples and the full set of respondents. Results are reported as proportions. The dataset `data_banda_govsat_count` contains the _weighted_ counts provided in the survey reports.
-The first available poll was released on `r format(as.Date(min(dat_govsat$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_govsat$date)), "%d %B %Y")`. `r length(unique(dat_govsat$date))` surveys are currently included in our dataset.  Table  \ref{tab:banda_govsat_vars} describes the variables included in the dataset. 
+The first available poll was released on `r format(as.Date(min(dat_govsat$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_govsat$date)), "%d %B %Y")`. `r length(unique(dat_govsat$date))` surveys are currently included in our dataset.  Table  \ref{tab:banda_govsat_vars} describes the variables included in the dataset.
 
 
 
@@ -243,12 +259,11 @@ The first available poll was released on `r format(as.Date(min(dat_govsat$date))
 
 
 ```{r, message=FALSE, results='asis',warning=FALSE,echo=FALSE}
-
 dat_vars_govsat <- data.frame(
-    Variable = colnames(dat_govsat) 
+    Variable = colnames(dat_govsat)
 )
 
-dat_vars_govsat <- dat_vars_govsat %>% 
+dat_vars_govsat <- dat_vars_govsat %>%
     mutate(Details = dplyr::case_when(
         Variable == "date" ~ "Release of poll",
         Variable == "date_start" ~ "Survey fielding: start",
@@ -273,7 +288,7 @@ dat_vars_govsat <- dat_vars_govsat %>%
         Variable == "area_urban" ~ "Urban region",
         Variable == "area_rural" ~ "Rural region",
         Variable == "const_seats_3" ~ "3-seat constituency",
-        Variable == "const_seats_4" ~  "4-seat constituency",
+        Variable == "const_seats_4" ~ "4-seat constituency",
         Variable == "const_seats_5" ~ "5-seat constituency",
         Variable == "voting_vote" ~ "Voting: will definitely vote",
         Variable == "voting_prob_vote" ~ "Voting: will probably vote",
@@ -281,43 +296,46 @@ dat_vars_govsat <- dat_vars_govsat %>%
         Variable == "voting_not_vote" ~ "Voting: will not vote",
         Variable == "future_fianna_fail" ~ "Future vote: Fianna Fáil",
         Variable == "future_fine_gael" ~ "Future vote: Fine Gael",
-        Variable == "future_labour" ~ "Future vote: Labour", 
-        Variable == "future_greens" ~ "Future vote: Green Party", 
+        Variable == "future_labour" ~ "Future vote: Labour",
+        Variable == "future_greens" ~ "Future vote: Green Party",
         Variable == "future_sinn_fein" ~ "Future vote: Sinn Féin",
         Variable == "future_ind_oth" ~ "Future vote: Other/Independent",
         Variable == "future_dont_know" ~ "Future vote: Don't know",
         Variable == "past_fianna_fail" ~ "Past vote: Fianna Fáil",
         Variable == "past_fine_gael" ~ "Past vote: Fine Gael",
-        Variable == "past_labour" ~ "Past vote: Labour", 
-        Variable == "past_greens" ~ "Past vote: Green Party", 
+        Variable == "past_labour" ~ "Past vote: Labour",
+        Variable == "past_greens" ~ "Past vote: Green Party",
         Variable == "past_sinn_fein" ~ "Past vote: Sinn Féin",
         Variable == "past_ind_oth" ~ "Past vote: Other/Independent",
-        Variable == "past_dont_know" ~ "Past vote: Don't know"))
+        Variable == "past_dont_know" ~ "Past vote: Don't know"
+    ))
 
-print(xtable(dat_vars_govsat, 
-             label = "tab:banda_govsat_vars",
-             caption = "Variable description: Satisfaction with government (Behaviour and Attitudes)"),
-      caption.placement = "top", 
-      size = "scriptsize",
-      include.rownames = FALSE)
+print(
+    xtable(dat_vars_govsat,
+        label = "tab:banda_govsat_vars",
+        caption = "Variable description: Satisfaction with government (Behaviour and Attitudes)"
+    ),
+    caption.placement = "top",
+    size = "scriptsize",
+    include.rownames = FALSE
+)
 ```
 
 
 ## Satisfaction with Party Leaders
 
 The dataset `data_banda_leaders_prop` contains information on the satisfaction with the leaders of several political parties for various subsamples and the full set of respondents. Results are reported as proportions. The dataset `data_banda_leaders_count` contains the _weighted_ counts provided in the survey reports.
-The first of the `r length(unique(dat_leaders$date))`  polls was released on `r format(as.Date(min(dat_leaders$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_leaders$date)), "%d %B %Y")`.  Table  \ref{tab:banda_leaders_vars} describes the variables included in the dataset. 
+The first of the `r length(unique(dat_leaders$date))`  polls was released on `r format(as.Date(min(dat_leaders$date)), "%d %B %Y")`. The latest poll included in the current version of the dataset was released on  `r format(as.Date(max(dat_leaders$date)), "%d %B %Y")`.  Table  \ref{tab:banda_leaders_vars} describes the variables included in the dataset.
 
 
 
 
 ```{r, message=FALSE, results='asis',warning=FALSE,echo=FALSE}
-
 dat_vars_leaders <- data.frame(
-    Variable = colnames(dat_leaders) 
+    Variable = colnames(dat_leaders)
 )
 
-dat_vars_leaders <- dat_vars_leaders %>% 
+dat_vars_leaders <- dat_vars_leaders %>%
     mutate(Details = dplyr::case_when(
         Variable == "date" ~ "Release of poll",
         Variable == "leader_party" ~ "Leader's party",
@@ -344,7 +362,7 @@ dat_vars_leaders <- dat_vars_leaders %>%
         Variable == "area_urban" ~ "Urban region",
         Variable == "area_rural" ~ "Rural region",
         Variable == "const_seats_3" ~ "3-seat constituency",
-        Variable == "const_seats_4" ~  "4-seat constituency",
+        Variable == "const_seats_4" ~ "4-seat constituency",
         Variable == "const_seats_5" ~ "5-seat constituency",
         Variable == "voting_vote" ~ "Voting: will definitely vote",
         Variable == "voting_prob_vote" ~ "Voting: will probably vote",
@@ -352,96 +370,109 @@ dat_vars_leaders <- dat_vars_leaders %>%
         Variable == "voting_not_vote" ~ "Voting: will not vote",
         Variable == "future_fianna_fail" ~ "Future vote: Fianna Fáil",
         Variable == "future_fine_gael" ~ "Future vote: Fine Gael",
-        Variable == "future_labour" ~ "Future vote: Labour", 
-        Variable == "future_greens" ~ "Future vote: Green Party", 
+        Variable == "future_labour" ~ "Future vote: Labour",
+        Variable == "future_greens" ~ "Future vote: Green Party",
         Variable == "future_sinn_fein" ~ "Future vote: Sinn Féin",
         Variable == "future_ind_oth" ~ "Future vote: Other/Independent",
         Variable == "future_dont_know" ~ "Future vote: Don't know",
         Variable == "past_fianna_fail" ~ "Past vote: Fianna Fáil",
         Variable == "past_fine_gael" ~ "Past vote: Fine Gael",
-        Variable == "past_labour" ~ "Past vote: Labour", 
-        Variable == "past_greens" ~ "Past vote: Green Party", 
+        Variable == "past_labour" ~ "Past vote: Labour",
+        Variable == "past_greens" ~ "Past vote: Green Party",
         Variable == "past_sinn_fein" ~ "Past vote: Sinn Féin",
         Variable == "past_ind_oth" ~ "Past vote: Other/Independent",
         Variable == "past_dont_know" ~ "Past vote: Don't know",
-        
-        
-        
     ))
 
-print(xtable(dat_vars_leaders, 
-             label = "tab:banda_leaders_vars",
-             caption = "Variable description: Satisfaction with party leaders (Behaviour and Attitudes)"),
-      caption.placement = "top", 
-      size = "scriptsize",
-      table.placement="htb",
-      include.rownames = FALSE)
+print(
+    xtable(dat_vars_leaders,
+        label = "tab:banda_leaders_vars",
+        caption = "Variable description: Satisfaction with party leaders (Behaviour and Attitudes)"
+    ),
+    caption.placement = "top",
+    size = "scriptsize",
+    table.placement = "htb",
+    include.rownames = FALSE
+)
 ```
 
 
 
 # Examples and Cautionary Notes
 
-In this section, we provide examples on how the datasets can reveal difference and similarities across sub-groups. We also show how and why these analyses can be problematic and involve considerable uncertainty. If researchers conduct sub-group analyses, we recommend pooling or comparing many surveys to better understand heterogeneity across polls. 
+In this section, we provide examples on how the datasets can reveal difference and similarities across sub-groups. We also show how and why these analyses can be problematic and involve considerable uncertainty. If researchers conduct sub-group analyses, we recommend pooling or comparing many surveys to better understand heterogeneity across polls.
 
 
 ## First-Preference Vote Choice
 
-First, we show how first-preference vote choice for Fianna Fáil, Fine Gael, and Sinn Féin has developed across the three age categories. The plot reveals three striking developments. First, in the group of 18-34-olds, support for the three parties was comparable between 2016 and 2020. Since the election in February 2020, support for Sinn Féin has skyrocketed among this age group. Support increased from around 30% to 45-50%. In the age group of 35-54 year-olds Sinn Féin also overtook Fianna Fáil and Fine Gael. In the group of respondents over 55 years, Fianna Fáil and Fine Gael tend to be stronger than Sinn Féin, but this gap has narrowed considerably. Current support for Sinn Féin is almost twice as high than between 2016 and 2020.
+First, we show how first-preference vote choice for Fianna Fáil, Fine Gael, and Sinn Féin has developed across the three age categories based on RedC polls.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-
-dat_firstpref_age <- dat_firstpref_banda %>% 
-    select(party, date, starts_with("age_")) %>% 
+dat_firstpref_age <- dat_firstpref_redc %>%
+    select(party, date, starts_with("age_")) %>%
     gather(group, support, -c(date, party)) %>%
-    filter(party %in% c("Sinn Féin", "Fine Gael", "Fianna Fáil")) %>% 
-    mutate(group = str_replace_all(group, "_", "-")) %>% 
-    mutate(group = str_remove_all(group, "age-")) %>% 
-    mutate(group = str_replace_all(group, "55", "55+")) %>% 
+    filter(party %in% c("Sinn Féin", "Fine Gael", "Fianna Fáil")) %>%
+    mutate(group = str_replace_all(group, "_", "-")) %>%
+    mutate(group = str_remove_all(group, "age-")) %>%
+    mutate(group = str_replace_all(group, "55", "55+")) %>%
     mutate(group = paste0("Age Group: ", group))
 
 dat_firstpref_age$party <- factor(dat_firstpref_age$party,
-                        levels = c("Sinn Féin",
-                                   "Fine Gael",
-                                   "Fianna Fáil"))
+    levels = c(
+        "Fine Gael",
+        "Fianna Fáil",
+        "Sinn Féin"
+    )
+)
 
 
 dat_latest_age <- filter(dat_firstpref_age, date == max(dat_firstpref_age$date))
 
 library(ggrepel)
 
-ggplot(dat_firstpref_age,
-       aes(x = as.Date(date), y = support, shape = party,
-           linetype = party,
-           colour = party,
-           fill = party)) +
-    geom_smooth(alpha = 0.3, se =TRUE,
-                span = 0.6,
-                size = 0.5,
-                level = 0.9,
-                method = "loess") +
-    geom_point(alpha = 0.6, size = 1)  +
+ggplot(
+    dat_firstpref_age,
+    aes(
+        x = as.Date(date), y = support,
+        # shape = party,
+        linetype = party,
+        colour = party,
+        fill = party
+    )
+) +
+    geom_smooth(
+        alpha = 0.3, se = TRUE,
+        span = 0.6,
+        size = 0.5,
+        level = 0.9,
+        method = "loess"
+    ) +
+    geom_point(alpha = 0.6, size = 1) +
     facet_wrap(~group, nrow = 1) +
-    scale_fill_manual(values = c("Sinn Féin" = "#326760",
-                                 "Fine Gael" = "#009FF3",
-                                 "Fianna Fáil" = "#66BB66")) +
-    scale_colour_manual(values = c("Sinn Féin" = "#326760",
-                                   "Fine Gael" = "#009FF3",
-                                   "Fianna Fáil" = "#66BB66")) +
-    scale_y_continuous(limits = c(0, 0.57), 
-                       breaks = c(seq(0, 0.6, 0.1)),
-                       labels = scales::percent_format(accuracy = 1)) +
-            geom_vline(xintercept = as.Date("2020-02-08"), linetype = "dashed",
-               colour = "grey50") +
-    ggrepel::geom_label_repel(data = dat_latest_age,
-                              aes(label = party),
-                              fill = "white",
-                              alpha = 0.9,
-                              size = 3,
-                              na.rm=TRUE) +
-    theme(legend.position = "none") +
-    labs(y = "Vote Intention", x = NULL, 
-         title = "Party Support Among Age Groups in Behaviour and Attitudes Polls") 
+    scale_fill_manual(values = c(
+        "Sinn Féin" = "#326760",
+        "Fine Gael" = "#009FF3",
+        "Fianna Fáil" = "#66BB66"
+    )) +
+    scale_colour_manual(values = c(
+        "Sinn Féin" = "#326760",
+        "Fine Gael" = "#009FF3",
+        "Fianna Fáil" = "#66BB66"
+    )) +
+    scale_y_continuous(
+        limits = c(0, 0.7),
+        breaks = c(seq(0, 0.6, 0.1)),
+        labels = scales::percent_format(accuracy = 1)
+    ) +
+    geom_vline(
+        xintercept = as.Date("2020-02-08"), linetype = "dashed",
+        colour = "grey50"
+    ) +
+    theme(legend.position = "bottom", legend.title = element_blank()) +
+    labs(
+        y = "Vote Intention", x = NULL,
+        title = "Party Support Among Age Groups in Behaviour and Attitudes Polls"
+    )
 ```
 
 
@@ -452,44 +483,65 @@ Next, we turn to an example of government satisfaction. Behaviour and Attitude p
 
 
 ```{r, fig.height=8, warning = FALSE, echo=FALSE}
-dat_govsat_long <- dat_govsat %>% 
-    select(date, starts_with("future_"),
-           satisfaction_government) %>% 
-    gather(party, support, -c(date, satisfaction_government)) %>% 
-    mutate(party = str_replace_all(party, "_", " "),
-           party = str_remove_all(party, "future"),
-           party = str_to_title(party),
-           party = str_squish(party)) %>% 
-    mutate(party = dplyr::recode(party, "Fianna Fail" = "Fianna Fáil", "Sinn Fein" = "Sinn Féin",
-                                 "Ind Oth" = "Oth/Ind")) %>% 
-    filter(party != "Dont Know") %>% 
+dat_govsat_long <- dat_govsat %>%
+    select(
+        date, starts_with("future_"),
+        satisfaction_government
+    ) %>%
+    gather(party, support, -c(date, satisfaction_government)) %>%
+    mutate(
+        party = str_replace_all(party, "_", " "),
+        party = str_remove_all(party, "future"),
+        party = str_to_title(party),
+        party = str_squish(party)
+    ) %>%
+    mutate(party = dplyr::recode(party,
+        "Fianna Fail" = "Fianna Fáil", "Sinn Fein" = "Sinn Féin",
+        "Ind Oth" = "Oth/Ind"
+    )) %>%
+    filter(party != "Dont Know") %>%
     mutate(satisfaction_government = str_to_title(satisfaction_government))
 
 
-dat_govsat_long$party <-factor(dat_govsat_long$party,
-                               levels = c("Fine Gael",
-                                          "Fianna Fáil",
-                                          "Labour", 
-                                          "Greens",
-                                          "Sinn Féin",
-                                          "Oth/Ind")) 
+dat_govsat_long$party <- factor(dat_govsat_long$party,
+    levels = c(
+        "Fine Gael",
+        "Fianna Fáil",
+        "Labour",
+        "Greens",
+        "Sinn Féin",
+        "Oth/Ind"
+    )
+)
 dat_govsat_long$satisfaction_government <- forcats::fct_rev(dat_govsat_long$satisfaction_government)
-ggplot(dat_govsat_long, aes(x = as.Date(date),
-                            y = support,
-                            colour = satisfaction_government)) +
+ggplot(dat_govsat_long, aes(
+    x = as.Date(date),
+    y = support,
+    colour = satisfaction_government
+)) +
     geom_point(alpha = 0.6) +
-    scale_colour_manual(values = c("darkgreen", "grey50",
-                                   "darkred")) + 
-        geom_vline(xintercept = as.Date("2020-02-08"), linetype = "dashed",
-               colour = "grey50") +
-        geom_vline(xintercept = as.Date("2016-02-26"), linetype = "dashed",
-               colour = "grey50") +
+    scale_colour_manual(values = c(
+        "darkgreen", "grey50",
+        "darkred"
+    )) +
+    geom_vline(
+        xintercept = as.Date("2020-02-08"), linetype = "dashed",
+        colour = "grey50"
+    ) +
+    geom_vline(
+        xintercept = as.Date("2016-02-26"), linetype = "dashed",
+        colour = "grey50"
+    ) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    facet_grid(party~satisfaction_government) +
-    labs(x = "Date of Survey", y = "Percentage of Sub-Group",
-                   title = "Satisfaction with the Government, Conditional on Party Support") +
-    theme(axis.text.x = element_text(angle = 90),
-          legend.position = "none")
+    facet_grid(party ~ satisfaction_government) +
+    labs(
+        x = "Date of Survey", y = "Percentage of Sub-Group",
+        title = "Satisfaction with the Government, Conditional on Party Support"
+    ) +
+    theme(
+        axis.text.x = element_text(angle = 90),
+        legend.position = "none"
+    )
 ```
 
 
@@ -502,61 +554,79 @@ Third, we assess how approval with party leaders varies among census-based measu
 
 First, Mary Lou McDonald is more popular than Gerry Adams when he left the party. Second, voters classified into _C2DE_ (working class) tend approve  McDonald more than semi-skilled and middle-class voters. This difference tends to be relatively small, though. Third, even though support for Sinn Féin increased substantively since the election in 2020, support McDonald remained constant. Fourth, we observe considerable variation among semi-skilled workers, which again points to the disadvantage of samples with around 1000 respondents: sub-group analyses for small groups involve a lot of uncertainty and should be treated with great caution.
 
-                                 
+
 ```{r sf_leaders, fig.height=5, fig.topcaption=TRUE, warning = FALSE,echo=FALSE, message=FALSE}
-dat_leaders_long <- dat_leaders %>% 
-    select(date, total, starts_with("class_"),
-           leader_party, 
-           satisfaction_leader) %>% 
-    gather(class, support, -c(date, satisfaction_leader,
-                               leader_party)) %>% 
-    filter(satisfaction_leader == "Satisfied") %>% 
-    mutate(class = str_remove_all(class, "class_")) %>% 
-    filter(leader_party == "Sinn Féin") %>% 
-    filter(date > as.Date("2016-01-01")) %>% 
-    mutate(mary_lou = ifelse(date > as.Date("2018-02-10"), 
-                             "Mary Lou McDonald", "Gerry Adams")) %>% 
-    mutate(class = dplyr::recode(class, "abc1" = "Middle Class\n(ABC1)",
-                                 "c2de" = "Working Class\n(C2DE)",
-                                 "f" = "Semi-Skilled\n(F)",
-                                 "total" = "All Respondents"))
+dat_leaders_long <- dat_leaders %>%
+    select(
+        date, total, starts_with("class_"),
+        leader_party,
+        satisfaction_leader
+    ) %>%
+    gather(class, support, -c(
+        date, satisfaction_leader,
+        leader_party
+    )) %>%
+    filter(satisfaction_leader == "Satisfied") %>%
+    mutate(class = str_remove_all(class, "class_")) %>%
+    filter(leader_party == "Sinn Féin") %>%
+    filter(date > as.Date("2016-01-01")) %>%
+    mutate(mary_lou = ifelse(date > as.Date("2018-02-10"),
+        "Mary Lou McDonald", "Gerry Adams"
+    )) %>%
+    mutate(class = dplyr::recode(class,
+        "abc1" = "Middle Class\n(ABC1)",
+        "c2de" = "Working Class\n(C2DE)",
+        "f" = "Semi-Skilled\n(F)",
+        "total" = "All Respondents"
+    ))
 
 dat_leaders_long$class <- factor(dat_leaders_long$class,
-                                 levels = c(
-                                     "All Respondents",
-                                     "Working Class\n(C2DE)",
-                                     "Middle Class\n(ABC1)",
-                                     "Semi-Skilled\n(F)"
-                                 ))
+    levels = c(
+        "All Respondents",
+        "Working Class\n(C2DE)",
+        "Middle Class\n(ABC1)",
+        "Semi-Skilled\n(F)"
+    )
+)
 
-ggplot(dat_leaders_long, aes(x = as.Date(date),
-                            y = support,
-                            colour = mary_lou,
-                            linetype = mary_lou,
-                            fill = mary_lou,
-                            shape = mary_lou)) +
+ggplot(dat_leaders_long, aes(
+    x = as.Date(date),
+    y = support,
+    colour = mary_lou,
+    linetype = mary_lou,
+    fill = mary_lou,
+    shape = mary_lou
+)) +
     geom_point(alpha = 0.6) +
-    geom_smooth(alpha = 0.3, se =TRUE,
-                span = 0.6,
-                size = 0.5,
-                level = 0.9,
-                method = "loess") +  
+    geom_smooth(
+        alpha = 0.3, se = TRUE,
+        span = 0.6,
+        size = 0.5,
+        level = 0.9,
+        method = "loess"
+    ) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0, 1)) +
     facet_wrap(~class, nrow = 1) +
-        scale_fill_manual(values = c("grey70",  "#326760"))  +
-    scale_colour_manual(values = c("grey70",  "#326760")) +
-    geom_vline(xintercept = as.Date("2020-02-08"), linetype = "dashed",
-               colour = "grey50") +
-    labs(x = "Date of Survey", y = "Satisfied with Sinn Féin Leader",
-         title = "Satisfaction with Leaders of Sinn Féin, Conditional on Social Class") +
-    theme(axis.text.x = element_text(angle = 90),
-          legend.position = "bottom", legend.title = element_blank())
+    scale_fill_manual(values = c("grey70", "#326760")) +
+    scale_colour_manual(values = c("grey70", "#326760")) +
+    geom_vline(
+        xintercept = as.Date("2020-02-08"), linetype = "dashed",
+        colour = "grey50"
+    ) +
+    labs(
+        x = "Date of Survey", y = "Satisfied with Sinn Féin Leader",
+        title = "Satisfaction with Leaders of Sinn Féin, Conditional on Social Class"
+    ) +
+    theme(
+        axis.text.x = element_text(angle = 90),
+        legend.position = "bottom", legend.title = element_blank()
+    )
 ```
 
 
 # File Formats
 
-We provide all datasets in four file formats. 
+We provide all datasets in four file formats.
 
 - `csv`: The [comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) file ensures inter-operability as it can be opened in R, Python, Stata, SPSS, and Excel.
 - `xlsx`: The [Excel spreadsheets](https://en.wikipedia.org/wiki/Microsoft_Excel) allow for an even more straightforward import of the data into Microsoft Excel.
