@@ -22,7 +22,6 @@ dat_redc_first_pref <- read_sheet(url_spreadsheets,
 )
 
 
-
 ## First preferences: Behaviour and Attitudes
 dat_banda_first_pref <- read_sheet(url_spreadsheets,
     sheet = "banda_first_pref",
@@ -80,6 +79,10 @@ dat_redc_first_pref <- dat_redc_first_pref %>%
     ))
 
 
+dat_redc_first_pref <- dat_redc_first_pref |>
+    mutate(Date = dplyr::recode(Date, "11/14/2024" = "11/04/2024"))
+
+
 dat_redc_first_pref <- dat_redc_first_pref %>%
     mutate(party = dplyr::recode(Party,
         "S.P.B.P." = "Solidarity/PBP",
@@ -132,7 +135,6 @@ dat_redc_clean <- dat_redc_first_pref %>%
 dat_ipi_redc <- filter(dat_ipi_subset, pollster == "Red C")
 
 dat_ipi_redc$date_middle <- as.Date(dat_ipi_redc$date_middle)
-
 
 
 dat_redc_clean <- rename(dat_redc_clean, date_middle = date)
