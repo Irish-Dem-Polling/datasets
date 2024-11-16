@@ -408,14 +408,6 @@ dat_prop_banda_govsat <- dat_prop_banda_govsat %>%
     mutate(across(where(is.numeric), round, 2)) %>%
     arrange(date)
 
-ggplot(
-    dat_prop_banda_govsat,
-    aes(x = date_middle, y = future_sinn_fein)
-) +
-    geom_point() +
-    facet_wrap(~satisfaction_government)
-
-
 ## repeat for counts
 
 dat_counts_banda_govsat <- dat_banda_govsat_clean_joined %>%
@@ -463,8 +455,6 @@ dat_counts_banda_govsat <- dat_banda_govsat_clean_joined %>%
         sample_size, satisfaction_government, total:past_dont_know
     ) %>%
     arrange(date)
-
-
 
 
 
