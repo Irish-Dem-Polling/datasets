@@ -64,13 +64,15 @@ dat_ipi_subset <- select(
     sample_size
 )
 
-
 # 2a) Wrangle RedC ----
 
 # recode dates
 dat_redc_first_pref <- dat_redc_first_pref %>%
     mutate(Date = as.character(Date)) %>%
     mutate(Date = dplyr::recode(Date,
+        "1749427200" = "09/06/2025",
+        "06/22/2025" = "06/22/2025",
+        "1712793600" = "11/04/2024",
         "1625788800" = "9/7/2021",
         "1565308800" = "9/8/2019",
         "1575504000" = "5/12/2019",
